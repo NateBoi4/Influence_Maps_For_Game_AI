@@ -15,5 +15,5 @@ https://vimeo.com/23913640
 
 public class InfluenceMap : MonoBehaviour
 {
-    public float [,] influences;
+    
 }
