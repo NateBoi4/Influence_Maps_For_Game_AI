@@ -39,8 +39,8 @@ public class Health : MonoBehaviour
         text.transform.localPosition = Vector3.zero;
         t = text.AddComponent<TextMesh>();
         t.characterSize = 0.1f;
-        t.fontSize = 50;
-        t.color = Color.green;
+        t.fontSize = 250;
+        t.color = Color.black;
         t.transform.localEulerAngles += new Vector3(45, -90, 0);
         t.transform.localPosition += new Vector3(0.0f, 5.0f, -1.5f);
     }

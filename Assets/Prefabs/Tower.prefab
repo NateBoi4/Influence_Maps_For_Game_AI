@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6503148880050278621}
   - component: {fileID: 4314578143050255635}
   - component: {fileID: 48456227013589214}
-  - component: {fileID: -4488939743792612757}
   - component: {fileID: -8310588288212783877}
   m_Layer: 0
   m_Name: Tower
@@ -97,20 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4488939743792612757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3120159051079391728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5365db7899030ff47a8a2ceb719a316c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  influenceValue: 5
-  influenceType: 0
 --- !u!114 &-8310588288212783877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +112,6 @@ MonoBehaviour:
   damageAmount: 0
   maxHealth: 0
   type: 1
+  team: 0
+  text: {fileID: 0}
+  t: {fileID: 0}
