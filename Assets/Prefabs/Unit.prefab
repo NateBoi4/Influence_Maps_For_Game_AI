@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2943185055061834989}
   - component: {fileID: 5355531173330894665}
   - component: {fileID: 6593344318717630896}
-  - component: {fileID: -621452840079493295}
   - component: {fileID: -4486062746939538273}
   - component: {fileID: -6605323972656135118}
+  - component: {fileID: -7376216459206683572}
+  - component: {fileID: 2239118533587082206}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Unit
@@ -98,20 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-621452840079493295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4323609282824776563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5365db7899030ff47a8a2ceb719a316c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  influenceValue: 1
-  influenceType: 0
 --- !u!54 &-4486062746939538273
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,7 +113,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-6605323972656135118
 MonoBehaviour:
@@ -144,3 +131,46 @@ MonoBehaviour:
   damageAmount: 0
   maxHealth: 0
   type: 2
+  team: 0
+  text: {fileID: 0}
+  t: {fileID: 0}
+--- !u!195 &-7376216459206683572
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323609282824776563}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2239118533587082206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323609282824776563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb11b846c653b50499abd03a7b3309dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 1
+  _server: {fileID: 0}
+  changeGoalPeriod: 7
+  type: Soldier
+  squadNo: 0
+  isStaticUnit: 0

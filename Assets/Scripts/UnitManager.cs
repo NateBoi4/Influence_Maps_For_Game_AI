@@ -26,12 +26,14 @@ public class UnitManager : MonoBehaviour
         {
             GameObject newFriendUnit = Instantiate(unit, friendlySpawnPoint.position, Quaternion.identity, friendlySpawnPoint);
             newFriendUnit.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue);
+            newFriendUnit.GetComponent<Health>().team = 0;
             friendlyUnits.Add(newFriendUnit);
         }
         if (enemyUnits.Count < maxUnits)
         {
             GameObject newEnemyUnit = Instantiate(unit, enemySpawnPoint.position, Quaternion.identity, enemySpawnPoint);
             newEnemyUnit.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+            newEnemyUnit.GetComponent<Health>().team = 1;
             enemyUnits.Add(newEnemyUnit);
         }
     }

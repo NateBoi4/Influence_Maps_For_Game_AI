@@ -11,7 +11,12 @@ public class Health : MonoBehaviour
     public int maxHealth;
     public ObjectType type;
 
+    public int team;
+
     private bool hasEntered = false;
+
+    public GameObject text;
+    public TextMesh t;
 
     private void Start()
     {
@@ -29,6 +34,15 @@ public class Health : MonoBehaviour
             default: break;
         }
         currentHealth = maxHealth;
+        text = new GameObject("Health");
+        text.transform.SetParent(transform);
+        text.transform.localPosition = Vector3.zero;
+        t = text.AddComponent<TextMesh>();
+        t.characterSize = 0.1f;
+        t.fontSize = 50;
+        t.color = Color.green;
+        t.transform.localEulerAngles += new Vector3(45, -90, 0);
+        t.transform.localPosition += new Vector3(0.0f, 5.0f, -1.5f);
     }
 
     private void Update()
@@ -37,11 +51,13 @@ public class Health : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        t.text = currentHealth.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(!hasEntered && type != ObjectType.TOWER && collision.gameObject.tag == "Unit")
+        if(!hasEntered && type != ObjectType.TOWER 
+            && collision.gameObject.tag == "Unit" && collision.gameObject.GetComponent<Health>().team != team)
         {
             hasEntered = true;
             currentHealth -= damageAmount;
@@ -50,7 +66,8 @@ public class Health : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (hasEntered && type != ObjectType.TOWER && collision.gameObject.tag == "Unit")
+        if (hasEntered && type != ObjectType.TOWER && collision.gameObject.tag == "Unit" 
+            && collision.gameObject.GetComponent<Health>().team != team)
         {
             hasEntered = false;
         }
