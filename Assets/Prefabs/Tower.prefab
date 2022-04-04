@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4314578143050255635}
   - component: {fileID: 48456227013589214}
   - component: {fileID: -8310588288212783877}
+  - component: {fileID: -132730850971679202}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -115,3 +116,21 @@ MonoBehaviour:
   team: 0
   text: {fileID: 0}
   t: {fileID: 0}
+--- !u!114 &-132730850971679202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120159051079391728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb11b846c653b50499abd03a7b3309dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 0
+  _server: {fileID: 0}
+  changeGoalPeriod: 5
+  type: 
+  squadNo: 0
+  isStaticUnit: 0
