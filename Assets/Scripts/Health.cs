@@ -10,66 +10,120 @@ public class Health : MonoBehaviour
     public int damageAmount;
     public int maxHealth;
     public ObjectType type;
+    public float combatPeriod;
 
     public int team;
-
-    private bool hasEntered = false;
 
     public GameObject text;
     public TextMesh t;
 
     private void Start()
     {
+        team = gameObject.GetComponent<Propogation>().squadNo;
+        text = new GameObject("Health");
+        text.transform.SetParent(transform);
+        text.transform.localPosition = Vector3.zero;
+        t = text.AddComponent<TextMesh>();
+        t.characterSize = 0.1f;
+        t.fontSize = 150;
+        t.color = Color.green;
         switch (type)
         {
             case ObjectType.NONE: break;
             case ObjectType.TOWER:
                 maxHealth = 500;
                 damageAmount = 50;
+                combatPeriod = 5.0f;
+                t.transform.localPosition += new Vector3(-1.0f, 1.0f, 0.0f);
                 break;
             case ObjectType.UNIT:
                 maxHealth = 100;
                 damageAmount = 10;
+                combatPeriod = 3.0f;
+                t.transform.localPosition += new Vector3(0.0f, 5.0f, 0.0f);
                 break;
             default: break;
         }
         currentHealth = maxHealth;
-        text = new GameObject("Health");
-        text.transform.SetParent(transform);
-        text.transform.localPosition = Vector3.zero;
-        t = text.AddComponent<TextMesh>();
-        t.characterSize = 0.1f;
-        t.fontSize = 250;
-        t.color = Color.black;
-        t.transform.localEulerAngles += new Vector3(45, -90, 0);
-        t.transform.localPosition += new Vector3(0.0f, 5.0f, -1.5f);
     }
 
     private void Update()
     {
         if(currentHealth <= 0)
         {
+            if(type == ObjectType.TOWER)
+            {
+                if(team == 0)
+                {
+                    GameManager.DestroyRed();
+                }
+                else if(team == 1)
+                {
+                    GameManager.DestroyBlue();
+                }
+            }
+            gameObject.GetComponent<Propogation>().Dead();
             Destroy(gameObject);
         }
+        if(currentHealth <= 50 && currentHealth > 25)
+        {
+            t.color = Color.yellow;
+        }
+        else if(currentHealth <= 25 && currentHealth > 0)
+        {
+            t.color= Color.red;
+        }
+        else
+        {
+            t.color= Color.green;
+        }
+        t.transform.LookAt(2.0f * transform.position - Camera.main.transform.position);
         t.text = currentHealth.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(!hasEntered && type != ObjectType.TOWER 
-            && collision.gameObject.tag == "Unit" && collision.gameObject.GetComponent<Health>().team != team)
+        Health enemy = collision.gameObject.GetComponent<Health>();
+        if (enemy)
         {
-            hasEntered = true;
-            currentHealth -= damageAmount;
+            if (enemy.team != team)
+            {
+                StartCoroutine(DoCombat(enemy));
+            }
+            else
+            {
+                enemy = null;
+            }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (hasEntered && type != ObjectType.TOWER && collision.gameObject.tag == "Unit" 
-            && collision.gameObject.GetComponent<Health>().team != team)
+        Health enemy = other.gameObject.GetComponent<Health>();
+        if (enemy)
         {
-            hasEntered = false;
+            if (enemy.team != team)
+            {
+                StartCoroutine(DoCombat(enemy));
+            }
+            else
+            {
+                enemy = null;
+            }
         }
+    }
+
+    private IEnumerator DoCombat(Health enemy)
+    {
+        while (enemy)
+        {
+            enemy.currentHealth -= damageAmount;
+            yield return new WaitForSeconds(combatPeriod);
+        }
+    }
+
+    private IEnumerator HealUnit()
+    {
+        yield return new WaitForSeconds(combatPeriod);
     }
 }

@@ -37,6 +37,19 @@ public class Propogation : MonoBehaviour, IPropagator
 	UnityEngine.AI.NavMeshAgent _navAgent;
 	//UnitSpecification _properties;
 
+	public void SetValue(float v) { _value = v; }
+	public void SetGoalPeriod(float period) { changeGoalPeriod = period; }
+	public void SetType(string _type) { type = _type; }
+	public void SetSquad(int num) { squadNo = num; }
+
+	public void SetPropogationInfo(float v, float period, string _type, int num)
+    {
+		_value = v;
+		changeGoalPeriod = period;
+		type = _type;
+		squadNo = num;
+    }
+
 	public Vector2I GridPosition
 	{
 		get
@@ -47,6 +60,7 @@ public class Propogation : MonoBehaviour, IPropagator
 
 	void Start()
 	{
+		_server = GameObject.FindGameObjectWithTag("GameController").GetComponent<InfluenceConnection>();
 		if (!isStaticUnit)
 			_navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -83,6 +97,7 @@ public class Propogation : MonoBehaviour, IPropagator
 
 	Vector3 PickDestination()
 	{
+		
 		return new Vector3(
 			Random.Range(_bottomLeft.x, _topRight.x),
 			Random.Range(_bottomLeft.y, _topRight.y),

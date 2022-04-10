@@ -11,8 +11,8 @@ public class CameraController : MonoBehaviour
     public float speed = 2.0f;                  // movement speed when scrolling on the side of the screen
     public float zoom_speed = 2.0f;             // zoom speed
     public float speed_x = 200.0f;              // Rotation speed
-    float rotation_y = 0.0f;                    // variable used for rotation function
-    private int edge_threshold = 5;             // area before the end of the screen where scrolling activate
+    //float rotation_y = 0.0f;                    // variable used for rotation function
+    //private int edge_threshold = 5;             // area before the end of the screen where scrolling activate
     // limits
     public float scroll_limit_x = 5f;                // how much you can scroll from the center of the scene on the X axis.
     public float scroll_limit_z = 5f;                // how much you can scroll from the center of the screen on the Y axis.

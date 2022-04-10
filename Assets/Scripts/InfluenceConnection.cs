@@ -122,7 +122,7 @@ public class InfluenceConnection : MonoBehaviour
 		_displaySignals.posIsOn = true;
 		_displaySignals.negIsLowMap = true;
 		_displaySignals.posIsLowMap = true;
-		_displaySignals.mapIdxNeg = 1;
+		_displaySignals.mapIdxNeg = 0;
 		_displaySignals.mapIdxPos = 0;
 		ChangeDisplayMode();
 	}
